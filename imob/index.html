@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viva Imóveis - Encontre o Lar dos Seus Sonhos</title>
+    <link rel="icon" href="images/icone.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* ============ NAVBAR ============ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a5f4a 0%, #2d8a6e 100%);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            color: #a8e6cf;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        
+        #inicio {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 95, 74, 0.9) 0%, rgba(45, 138, 110, 0.85) 100%),
+                        url('images/casa1.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            color: #fff;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.35rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: #fff;
+            color: #1a5f4a;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+            background: #a8e6cf;
+        }
+
+        
+        #quem-somos {
+            padding: 6rem 2rem;
+            background: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1a5f4a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: #1a5f4a;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            flex: 1;
+            min-width: 200px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(26, 95, 74, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1a5f4a 0%, #2d8a6e 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h4 {
+            color: #1a5f4a;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        
+        #catalogo {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .catalog-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+        }
+
+        .property-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(26, 95, 74, 0.2);
+        }
+
+        .property-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .property-card:hover .property-image {
+            transform: scale(1.05);
+        }
+
+        .image-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .property-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: linear-gradient(135deg, #1a5f4a 0%, #2d8a6e 100%);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .property-info {
+            padding: 1.5rem;
+        }
+
+        .property-info h3 {
+            color: #1a5f4a;
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .property-location {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .property-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #2d8a6e;
+            margin-bottom: 1rem;
+        }
+
+        .property-specs {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 1rem;
+        }
+
+        .spec {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .spec-icon {
+            width: 28px;
+            height: 28px;
+            background: #e8f5e9;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        
+        .property-details {
+            margin-top: 1rem;
+        }
+
+        .property-details summary {
+            background: linear-gradient(135deg, #1a5f4a 0%, #2d8a6e 100%);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .property-details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .property-details summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .property-details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .property-details summary:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .details-content {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 0 0 12px 12px;
+            margin-top: -0.5rem;
+        }
+
+        .details-content h4 {
+            color: #1a5f4a;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .details-content p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .amenity {
+            background: #fff;
+            border: 2px solid #2d8a6e;
+            color: #2d8a6e;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 10px;
+            border-left: 4px solid #2d8a6e;
+        }
+
+        .contact-info p {
+            margin: 0;
+            font-weight: 600;
+            color: #1a5f4a;
+        }
+
+        
+        footer {
+            background: linear-gradient(135deg, #1a5f4a 0%, #2d8a6e 100%);
+            color: #fff;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: #a8e6cf;
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 2rem 0;
+        }
+
+        .footer-copy {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .catalog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-container {
+                flex-direction: column;
+            }
+
+            .property-specs {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .footer-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">🏠</div>
+            <div class="logo-text">Viva <span>Imóveis</span></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#quem-somos">Quem Somos</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+        </ul>
+    </nav>
+
+    
+    <section id="inicio">
+        <div class="hero-content">
+            <h1>Encontre o Lar dos Seus Sonhos</h1>
+            <p>A Viva Imóveis está aqui para transformar o seu sonho em realidade. Oferecemos as melhores opções de imóveis com atendimento personalizado e dedicado.</p>
+            <a href="#catalogo" class="hero-btn">Ver Imóveis Disponíveis</a>
+        </div>
+    </section>
+
+    
+    <section id="quem-somos">
+        <h2 class="section-title">Quem Somos</h2>
+        <p class="section-subtitle">Conheça a história e os valores que fazem da Viva Imóveis a sua melhor escolha</p>
+        
+        <div class="about-container">
+            <div class="about-text">
+                <h3>Sua Parceira na Realização de Sonhos</h3>
+                <p>A <strong>Viva Imóveis</strong> nasceu com a missão de conectar pessoas aos seus lares ideais. Com mais de 15 anos de experiência no mercado imobiliário, construímos uma reputação sólida baseada na confiança, transparência e excelência no atendimento.</p>
+                <p>Nossa equipe de profissionais qualificados está sempre pronta para entender suas necessidades e encontrar o imóvel perfeito para você e sua família. Trabalhamos com uma ampla variedade de propriedades, desde apartamentos compactos até casas espaçosas.</p>
+                
+                <div class="about-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">⭐</div>
+                        <h4>+15 Anos</h4>
+                        <p>de experiência no mercado</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h4>+2.500</h4>
+                        <p>clientes satisfeitos</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h4>Confiança</h4>
+                        <p>Atendimento transparente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="catalogo">
+        <h2 class="section-title">Nosso Catálogo</h2>
+        <p class="section-subtitle">Explore nossa seleção de imóveis e encontre o lugar perfeito para chamar de lar</p>
+        
+        <div class="catalog-grid">
+            
+            <article class="property-card">
+                <div class="image-container">
+                    <span class="property-tag">Destaque</span>
+                    <img src="images/casa1.jpg" alt="Casa moderna com dois andares" class="property-image">
+                </div>
+                <div class="property-info">
+                    <h3>Casa Moderna Dois Andares</h3>
+                    <p class="property-location">📍 Jardim das Flores, São Paulo - SP</p>
+                    <p class="property-price">R$ 850.000,00</p>
+                    <div class="property-specs">
+                        <span class="spec"><span class="spec-icon">🛏️</span> 4 Quartos</span>
+                        <span class="spec"><span class="spec-icon">🚿</span> 3 Banheiros</span>
+                        <span class="spec"><span class="spec-icon">📐</span> 280m²</span>
+                    </div>
+                    <details class="property-details">
+                        <summary>Ver Mais Informações</summary>
+                        <div class="details-content">
+                            <h4>Descrição Completa</h4>
+                            <p>Belíssima casa moderna com acabamento de alto padrão. Possui ampla sala de estar integrada com a cozinha gourmet, área de churrasqueira coberta, jardim com paisagismo e garagem para 3 carros. Os quartos são espaçosos, sendo uma suíte master com closet e banheira de hidromassagem.</p>
+                            <h4>Comodidades</h4>
+                            <div class="amenities">
+                                <span class="amenity">Piscina</span>
+                                <span class="amenity">Churrasqueira</span>
+                                <span class="amenity">Garagem 3 carros</span>
+                                <span class="amenity">Jardim</span>
+                                <span class="amenity">Segurança 24h</span>
+                                <span class="amenity">Ar condicionado</span>
+                            </div>
+                            <div class="contact-info">
+                                <p>📞 Interessado? Ligue: (11) 99999-1234</p>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </article>
+
+            
+            <article class="property-card">
+                <div class="image-container">
+                    <span class="property-tag">Novo</span>
+                    <img src="images/apartamento1.jpg" alt="Apartamento de luxo" class="property-image">
+                </div>
+                <div class="property-info">
+                    <h3>Apartamento Alto Padrão</h3>
+                    <p class="property-location">📍 Centro, Rio de Janeiro - RJ</p>
+                    <p class="property-price">R$ 1.200.000,00</p>
+                    <div class="property-specs">
+                        <span class="spec"><span class="spec-icon">🛏️</span> 3 Quartos</span>
+                        <span class="spec"><span class="spec-icon">🚿</span> 2 Banheiros</span>
+                        <span class="spec"><span class="spec-icon">📐</span> 150m²</span>
+                    </div>
+                    <details class="property-details">
+                        <summary>Ver Mais Informações</summary>
+                        <div class="details-content">
+                            <h4>Descrição Completa</h4>
+                            <p>Apartamento de luxo no coração do Rio de Janeiro. Vista panorâmica para o mar, piso em porcelanato, cozinha planejada com eletrodomésticos embutidos. Condomínio com infraestrutura completa incluindo academia, salão de festas e playground.</p>
+                            <h4>Comodidades</h4>
+                            <div class="amenities">
+                                <span class="amenity">Vista para o mar</span>
+                                <span class="amenity">Academia</span>
+                                <span class="amenity">Salão de festas</span>
+                                <span class="amenity">Portaria 24h</span>
+                                <span class="amenity">2 Vagas garagem</span>
+                                <span class="amenity">Varanda gourmet</span>
+                            </div>
+                            <div class="contact-info">
+                                <p>📞 Interessado? Ligue: (11) 99999-1234</p>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </article>
+
+    
+            <article class="property-card">
+                <div class="image-container">
+                    <span class="property-tag">Oportunidade</span>
+                    <img src="images/casa2.jpg" alt="Casa aconchegante" class="property-image">
+                </div>
+                <div class="property-info">
+                    <h3>Casa Aconchegante com Jardim</h3>
+                    <p class="property-location">📍 Vila Nova, Campinas - SP</p>
+                    <p class="property-price">R$ 480.000,00</p>
+                    <div class="property-specs">
+                        <span class="spec"><span class="spec-icon">🛏️</span> 3 Quartos</span>
+                        <span class="spec"><span class="spec-icon">🚿</span> 2 Banheiros</span>
+                        <span class="spec"><span class="spec-icon">📐</span> 180m²</span>
+                    </div>
+                    <details class="property-details">
+                        <summary>Ver Mais Informações</summary>
+                        <div class="details-content">
+                            <h4>Descrição Completa</h4>
+                            <p>Casa térrea perfeita para famílias. Ambiente acolhedor com detalhes em madeira, amplo quintal com árvores frutíferas, varanda coberta ideal para momentos de lazer. Localização tranquila em bairro residencial com fácil acesso a comércios e escolas.</p>
+                            <h4>Comodidades</h4>
+                            <div class="amenities">
+                                <span class="amenity">Quintal amplo</span>
+                                <span class="amenity">Varanda</span>
+                                <span class="amenity">Garagem 2 carros</span>
+                                <span class="amenity">Área de serviço</span>
+                                <span class="amenity">Depósito</span>
+                            </div>
+                            <div class="contact-info">
+                                <p>📞 Interessado? Ligue: (11) 99999-1234</p>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </article>
+
+            
+            <article class="property-card">
+                <div class="image-container">
+                    <span class="property-tag">Exclusivo</span>
+                    <img src="images/apartamento2.jpg" alt="Cobertura duplex" class="property-image">
+                </div>
+                <div class="property-info">
+                    <h3>Cobertura Duplex Premium</h3>
+                    <p class="property-location">📍 Moema, São Paulo - SP</p>
+                    <p class="property-price">R$ 2.500.000,00</p>
+                    <div class="property-specs">
+                        <span class="spec"><span class="spec-icon">🛏️</span> 4 Quartos</span>
+                        <span class="spec"><span class="spec-icon">🚿</span> 4 Banheiros</span>
+                        <span class="spec"><span class="spec-icon">📐</span> 350m²</span>
+                    </div>
+                    <details class="property-details">
+                        <summary>Ver Mais Informações</summary>
+                        <div class="details-content">
+                            <h4>Descrição Completa</h4>
+                            <p>Cobertura duplex espetacular com terraço privativo de 100m². Piscina aquecida com deck, espaço gourmet completo com churrasqueira e forno de pizza. Interior com projeto de iluminação, automação residencial e sistema de som ambiente integrado.</p>
+                            <h4>Comodidades</h4>
+                            <div class="amenities">
+                                <span class="amenity">Piscina privativa</span>
+                                <span class="amenity">Terraço 100m²</span>
+                                <span class="amenity">Automação</span>
+                                <span class="amenity">4 Vagas</span>
+                                <span class="amenity">Forno de pizza</span>
+                                <span class="amenity">Adega climatizada</span>
+                            </div>
+                            <div class="contact-info">
+                                <p>📞 Interessado? Ligue: (11) 99999-1234</p>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </article>
+
+            
+            <article class="property-card">
+                <div class="image-container">
+                    <span class="property-tag">Campo</span>
+                    <img src="images/casa3.jpg" alt="Casa de campo com piscina" class="property-image">
+                </div>
+                <div class="property-info">
+                    <h3>Casa de Campo com Piscina</h3>
+                    <p class="property-location">📍 Atibaia - SP</p>
+                    <p class="property-price">R$ 1.100.000,00</p>
+                    <div class="property-specs">
+                        <span class="spec"><span class="spec-icon">🛏️</span> 5 Quartos</span>
+                        <span class="spec"><span class="spec-icon">🚿</span> 4 Banheiros</span>
+                        <span class="spec"><span class="spec-icon">📐</span> 400m²</span>
+                    </div>
+                    <details class="property-details">
+                        <summary>Ver Mais Informações</summary>
+                        <div class="details-content">
+                            <h4>Descrição Completa</h4>
+                            <p>Refúgio perfeito para quem busca tranquilidade e contato com a natureza. Propriedade com vista para as montanhas, piscina aquecida, sauna, campo de futebol e trilhas ecológicas. Casa principal com lareira e 2 suítes, além de casa de hóspedes independente.</p>
+                            <h4>Comodidades</h4>
+                            <div class="amenities">
+                                <span class="amenity">Piscina aquecida</span>
+                                <span class="amenity">Sauna</span>
+                                <span class="amenity">Campo de futebol</span>
+                                <span class="amenity">Casa de hóspedes</span>
+                                <span class="amenity">Lareira</span>
+                                <span class="amenity">Horta orgânica</span>
+                            </div>
+                            <div class="contact-info">
+                                <p>📞 Interessado? Ligue: (11) 99999-1234</p>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </article>
+
+            
+            <article class="property-card">
+                <div class="image-container">
+                    <span class="property-tag">Compacto</span>
+                    <img src="images/apartamento3.jpg" alt="Studio moderno" class="property-image">
+                </div>
+                <div class="property-info">
+                    <h3>Studio Moderno e Funcional</h3>
+                    <p class="property-location">📍 Pinheiros, São Paulo - SP</p>
+                    <p class="property-price">R$ 320.000,00</p>
+                    <div class="property-specs">
+                        <span class="spec"><span class="spec-icon">🛏️</span> 1 Quarto</span>
+                        <span class="spec"><span class="spec-icon">🚿</span> 1 Banheiro</span>
+                        <span class="spec"><span class="spec-icon">📐</span> 45m²</span>
+                    </div>
+                    <details class="property-details">
+                        <summary>Ver Mais Informações</summary>
+                        <div class="details-content">
+                            <h4>Descrição Completa</h4>
+                            <p>Studio inteligente com aproveitamento máximo do espaço. Cozinha americana com bancada em ilha, móveis planejados em todos os ambientes, ar condicionado split. Prédio novo com coworking, lavanderia compartilhada, bicicletário e espaço pet.</p>
+                            <h4>Comodidades</h4>
+                            <div class="amenities">
+                                <span class="amenity">Coworking</span>
+                                <span class="amenity">Lavanderia</span>
+                                <span class="amenity">Bicicletário</span>
+                                <span class="amenity">Espaço pet</span>
+                                <span class="amenity">Rooftop</span>
+                                <span class="amenity">1 Vaga</span>
+                            </div>
+                            <div class="contact-info">
+                                <p>📞 Interessado? Ligue: (11) 99999-1234</p>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Viva <span>Imóveis</span></div>
+            <p>Transformando sonhos em endereços desde 2009</p>
+            
+            <div class="footer-contact">
+                <span class="footer-contact-item">📍 Av. Paulista, 1000 - São Paulo, SP</span>
+                <span class="footer-contact-item">📞 (11) 99999-1234</span>
+                <span class="footer-contact-item">✉️ contato@vivaimoveis.com.br</span>
+            </div>
+            
+            <div class="footer-divider"></div>
+            
+            <p class="footer-copy">© 2024 Viva Imóveis. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
